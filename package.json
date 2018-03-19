@@ -2,8 +2,19 @@
   "name": "homebridge-airquality",
   "version": "0.1.0",
   "description": "Homebridge plugin for my custom-built pm2.5 quality sensor",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "git@github.com:mgadda/homebridge-airquality.git",
   "author": "Matt Gadda <mgadda@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=9.3.0",
+    "homebridge": ">=0.4.32"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.7"
+  }
 }

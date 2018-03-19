@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    // "noImplicitAny": true,    
+    "outDir": "dist",
+    "sourceMap": true,
+    "pretty": true,
+    "strictNullChecks": true,
+    "module": "commonjs"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],  
+}
