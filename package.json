@@ -1,0 +1,9 @@
+{
+  "name": "homebridge-airquality",
+  "version": "0.1.0",
+  "description": "Homebridge plugin for my custom-built pm2.5 quality sensor",
+  "main": "index.js",
+  "repository": "git@github.com:mgadda/homebridge-airquality.git",
+  "author": "Matt Gadda <mgadda@gmail.com>",
+  "license": "MIT"
+}
