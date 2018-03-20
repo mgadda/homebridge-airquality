@@ -6,7 +6,7 @@ import * as hap from "hap-nodejs";
 var Accessory: typeof PlatformAccessory, 
     Service: typeof hap.Service, 
     Characteristic: typeof hap.Characteristic;
-
+  
 
 export default initializePlugin;
 
@@ -21,6 +21,7 @@ function initializePlugin(homebridge: API) {
     AirQualityPlatform, 
     false
   );
+  
 }
 
 class AirQualityPlatform extends Platform {

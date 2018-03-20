@@ -244,8 +244,6 @@ export function once(func: Function): Function;
 
 // lib/accessories/types.js
 
-// lib/accessories/types.js
-
 export namespace LegacyTypes {
   enum HomeKitTransportCategoryTypes {
     OTHER_TCTYPE = 1,

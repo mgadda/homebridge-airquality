@@ -28,14 +28,7 @@ export class API extends EventEmitter {
   version: number;  
   serverVersion: string;
   user: typeof User;
-  hap2: typeof hap;
-  hap: { // TODO: is there a better way to re-export these? (typeof hap does not work)
-    Accessory: typeof hap.Accessory,
-    Bridge: typeof hap.Bridge,
-    Camera: typeof hap.Camera,
-    Characteristic: typeof hap.Characteristic,
-    Service: typeof hap.Service
-  };
+  hap: Pick<typeof hap, 'Accessory' | 'Bridge' | 'Camera' | 'Characteristic' | 'Service'>;
   hapLegacyTypes: hap.LegacyTypes;
   platformAccessory: typeof PlatformAccessory;
 
