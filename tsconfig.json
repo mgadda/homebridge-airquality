@@ -5,8 +5,14 @@
     "sourceMap": true,
     "pretty": true,
     "strictNullChecks": true,
-    "module": "commonjs"
-  },
+    "module": "commonjs",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./types/*"        
+      ]
+    }    
+  },  
   "include": [
     "src/**/*"
   ],

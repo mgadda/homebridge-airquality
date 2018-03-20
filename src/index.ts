@@ -1,5 +1,15 @@
 import * as http from 'http';
 
-const Accessory, Service, Characteristic, UUIDGen;
+import { API, User } from "homebridge";
+import * as hap from "hap-nodejs";
 
-export default (homebridge: any) => {}
+var Accessory: hap.Accessory, 
+    Service: hap.Service, 
+    Characteristic: hap.Characteristic;
+
+export default (homebridge: API) => {
+  Accessory = homebridge.hap.Accessory; 
+  Service = homebridge.hap.Service;
+  Characteristic = homebridge.hap.Characteristic;
+
+}
