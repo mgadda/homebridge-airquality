@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    // "noImplicitAny": true,    
+    // "noImplicitAny": true,
     "outDir": "dist",
     "sourceMap": true,
     "pretty": true,
@@ -9,15 +9,21 @@
     "baseUrl": ".",
     "paths": {
       "*": [
-        "./types/*"        
+        "./types/*"
       ]
-    }    
-  },  
+    },
+    "lib": [ // dom, esnext, esnext.asynciterable needed only for generate_type.ts
+      "dom",
+      "esnext",
+      "esnext.asynciterable"
+    ]
+  },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "scripts/**/*"
   ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ],  
+  ],
 }

@@ -12,9 +12,15 @@
   },
   "scripts": {
     "build": "tsc",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "generate_types": "yarn build && node dist/scripts/generate_types.js ./node_modules/hap-nodejs/lib/gen/HomeKitTypes.js | prettier > types/hap-nodejs/HomeKitType.d.ts"
   },
   "devDependencies": {
-    "@types/node": "^9.4.7"
-  }
+    "@types/acorn": "^4.0.3",
+    "@types/node": "^9.4.7",
+    "acorn": "^5.5.3",
+    "homebridge": "^0.4.38",
+    "prettier": "1.11.1"
+  },
+  "dependencies": {}
 }
