@@ -18,7 +18,6 @@ export class User {
   static persistPath(): string;
   static cachedAccessoryPath(): string;
   static setStoragePath(): void;
-  test: string;
 }
 
 // ./lib/api.js
@@ -32,32 +31,32 @@ export class API extends EventEmitter {
   hapLegacyTypes: hap.LegacyTypes;
   platformAccessory: typeof PlatformAccessory;
 
-  accessory(name: string): hap.Accessory;
+  accessory(name: string): PlatformAccessory;
   registerAccessory<T extends hap.Accessory>(
     pluginName: string, 
     accessoryName: string, 
-    constructor: {new(): T; }, // TODO: verify type 
-    configurationRequestHandler: API.ConfigurationRequestHandler
+    constructor: {new(log: Logger, config: Config): T; }, // TODO: verify type 
+    configurationRequestHandler?: API.ConfigurationRequestHandler
   );
 
-  publishCameraAccessories(pluginName: string, accessories: hap.Accessory[]);
-  platform(name: string): Platform
+  publishCameraAccessories(pluginName: string, accessories: PlatformAccessory[]);
+  platform(name: string): PlatformConstructor
   registerPlatform(
     pluginName: string, 
     platformName: string, 
-    constructor: typeof Platform, 
+    constructor: PlatformConstructor, 
     dynamic: boolean
   );
   registerPlatformAccessories(
     pluginName: string, 
     platformName: string, 
-    accessories: hap.Accessory[]
+    accessories: PlatformAccessory[]
   );
-  updatePlatformAccessories(accessories: hap.Accessory[]);
+  updatePlatformAccessories(accessories: PlatformAccessory[]);
   unregisterPlatformAccessories(
     pluginName: string, 
     platformName: string, 
-    accessories: hap.Accessory[]
+    accessories: PlatformAccessory[]
   );
 }
 
@@ -67,7 +66,8 @@ export namespace API {
     request: Request,  // TODO: verify type
     callback: API.Callback // TODO: verify type
   ) => void; // TODO: define type
-  export type Callback = (
+  // PluginResponseHandler -- see bridgeSetupSession.js
+  export type Callback = ( 
     response: any, // TODO: define type 
     type: string, 
     replace: boolean, 
@@ -75,18 +75,22 @@ export namespace API {
   ) => void;
 }
 
-export abstract class Platform {
-  constructor(log: Logger, api: API, config: any);
+export type PlatformConstructor = { 
+  new(log: Logger, api: API, config: object): Platform 
 }
 
-// lib/platformAccessory.js
+export interface Platform {
+  configureAccessory(accessory: PlatformAccessory);
+  configurationRequestHandler(context: any, request: Request, callback: API.Callback);
+  accessories(fn: (foundAccessories: PlatformAccessory[]) => void);
+}
 
 export class PlatformAccessory extends EventEmitter {
-  constructor(displayName: String, UUID: hap.UUID, category: hap.Accessory.Category);
+  constructor(displayName: String, UUID: hap.UUID, category: hap.Accessory.Categories);
   
   displayName: string;
   UUID: hap.UUID;
-  category: hap.Accessory.Category;
+  category: hap.Accessory.Categories;
   services: hap.Service[];
   reachable: boolean;
   context: object; // TODO: define type

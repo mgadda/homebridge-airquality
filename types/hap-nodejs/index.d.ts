@@ -24,7 +24,7 @@ export class Accessory extends EventEmitter {
   bridged: boolean;
   bridgedAccessories: Accessory[];
   reachable: boolean;
-  category: Accessory.Category;
+  category: Accessory.Categories;
   services: Service[];
   cameraSource: Camera; 
   shouldPurgeUnusedIDs: boolean;
@@ -53,43 +53,43 @@ export class Accessory extends EventEmitter {
 }
 
 export namespace Accessory {
-  export enum Category {
-    Other = 1,
-    Bridge = 2,
-    Fan = 3,
-    GarageDoorOpener = 4,
-    LightBulb = 5,
-    DoorLock = 6,
-    Outlet = 7,
-    Switch = 8,
-    Thermostate = 9,
-    Sensor = 10,
-    AlarmSystem = 11,
-    SecuritySystem = 11, //Added to conform to HAP naming
-    Door = 12,
-    Window = 13,
-    WindowCovering = 14,
-    ProgrammableSwitch = 15,
-    RangeExtender = 16,
-    Camera = 17,
-    IPCamera = 17, //Added to conform to HAP naming
-    VideoDoorbell = 18,
-    AirPurifier = 19,
-    AirHeater = 20, //Not in HAP Spec
-    AirConditioner = 21, //Not in HAP Spec
-    AirHumidifier = 22, //Not in HAP Spec
-    AirDehumidifier = 23, // Not in HAP Spec
-    AppleTV = 24,
-    Speaker = 26,
-    Airport = 27,
-    Sprinkler = 28,
-    Faucet = 29,
-    ShowerHead = 30
+  export enum Categories {
+    OTHER = 1,
+    BRIDGE = 2,
+    FAN = 3,
+    GARAGE_DOOR_OPENER = 4,
+    LIGHT_BULB = 5,
+    DOOR_LOCK = 6,
+    OUTLET = 7,
+    SWITCH = 8,
+    THERMOSTAT = 9,
+    SENSOR = 10,
+    ALARM_SYSTEM = 11,
+    SECURITY_SYSTEM = 11, //Added to conform to HAP naming
+    DOOR = 12,
+    WINDOW = 13,
+    WINDOW_COVERING = 14,
+    PROGRAMMABLE_SWITCH = 15,
+    RANGE_EXTENDER = 16,
+    CAMAERA = 17,
+    IP_CAMERA = 17, //Added to conform to HAP naming
+    VIDEO_DOORBELL = 18,
+    AIR_PURIFIER = 19,
+    AIR_HEATER = 20, //Not in HAP Spec
+    AIR_CONDITIONER = 21, //Not in HAP Spec
+    AIR_HUMIDIFIER = 22, //Not in HAP Spec
+    AIR_DEHUMIDIFIER = 23, // Not in HAP Spec
+    APPLE_TV = 24,
+    SPEAKER = 26,
+    AIRPORT = 27,
+    SPRINKLER = 28,
+    FAUCET = 29,
+    SHOWER_HEAD = 30
   }
   interface PublishInfo {
     username: string;
     pincode: string;
-    category: Accessory.Category;
+    category: Accessory.Categories;
   } 
   interface HAP {
     aid: AID;
@@ -117,7 +117,7 @@ export class Service extends EventEmitter {
   addLinkedService(newLinkedService: Service);
   removeLinkedService(oldLinkedService: Service);
   removeCharacteristic(characteristic: Characteristic);
-  getCharacteristic(name: Service.CharacteristicLike);
+  getCharacteristic(name: Service.CharacteristicLike): Characteristic;
   testCharacteristic(nane: Service.CharacteristicLike): boolean;
   setCharacteristic(name: Service.CharacteristicLike, value: any): Service // TODO: define value type
   updateCharacteristic(name: Service.CharacteristicLike, value: any): Service;
