@@ -1,0 +1,4 @@
+{
+  "schemaPath": "./config/schema.json",
+  "include": ["./config/schema.json", "./src/**/*.ts"]
+}

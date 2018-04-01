@@ -2,7 +2,7 @@
   "name": "homebridge-airquality",
   "version": "0.1.0",
   "description": "Homebridge plugin for my custom-built pm2.5 quality sensor",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "repository": "git@github.com:mgadda/homebridge-airquality.git",
   "author": "Matt Gadda <mgadda@gmail.com>",
   "license": "MIT",
@@ -13,14 +13,25 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "generate_types": "yarn build && node dist/scripts/generate_types.js ./node_modules/hap-nodejs/lib/gen/HomeKitTypes.js | prettier > types/hap-nodejs/HomeKitType.d.ts"
+    "homekit_types": "yarn build && node dist/scripts/generate_types.js ./node_modules/hap-nodejs/lib/gen/HomeKitTypes.js | prettier > types/hap-nodejs/HomeKitType.d.ts",
+    "schema": "apollo-codegen introspect-schema http://localhost:4000 --output config/schema.json",
+    "graphql": "yarn schema && apollo-codegen generate 'src/graphql/**/*.graphql' --target typescript --addTypename --output src/graphql/operation-result-types.ts"
   },
   "devDependencies": {
     "@types/acorn": "^4.0.3",
     "@types/node": "^9.4.7",
     "acorn": "^5.5.3",
+    "apollo-codegen": "^0.19.0",
     "homebridge": "^0.4.38",
     "prettier": "1.11.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch": "^2.1.2"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "resolutions": {
+    "graphql": "0.12.3"
+  }
 }

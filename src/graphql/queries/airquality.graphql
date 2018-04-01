@@ -1,0 +1,6 @@
+query AirQuality {
+  airQuality {
+    quality    
+    particulate2_5
+  }
+}
