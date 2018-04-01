@@ -7,7 +7,7 @@
   "author": "Matt Gadda <mgadda@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=9.3.0",
+    "node": ">=8.11.1",
     "homebridge": ">=0.4.32"
   },
   "scripts": {
