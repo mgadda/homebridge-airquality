@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     // "noImplicitAny": true,
+    "compileOnSave": true,
     "outDir": "dist",
     "sourceMap": true,
     "pretty": true,
     "strictNullChecks": true,
     "module": "commonjs",
-    "baseUrl": ".",
+    "removeComments": true,
+    "baseUrl": ".",    
     "paths": {
       "*": [
         "./types/*"
