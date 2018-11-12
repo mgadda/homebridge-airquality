@@ -72,7 +72,7 @@ class WheezyAccessory extends hap.Accessory {
 
   
   async _queryAQBot<T>(query: string): Promise<T> {
-    const response = await fetch("http://localhost:4000", {
+    const response = await fetch("http://localhost:4000/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query })
@@ -87,7 +87,7 @@ class WheezyAccessory extends hap.Accessory {
     // TODO: this.log does not contain an 'info' property (fix declaration)
     const query = `
       query {
-        airQuality {
+        air_quality {
           quality
         }
       }
@@ -104,7 +104,7 @@ class WheezyAccessory extends hap.Accessory {
   getMostRecentAirQualityDensity(callback: Callback) {
     const query = `
       query {
-        airQuality {
+        air_quality {
           particulate2_5
         }
       }
