@@ -12,10 +12,9 @@ export enum Quality {
 
 
 export interface AirQualityQuery {
-  airQuality:  {
+  air_quality:  {
     __typename: "AirQuality",
     quality: Quality | null,
-    particulate10: number | null,
     particulate2_5: number | null,
   } | null,
 };
